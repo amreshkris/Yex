@@ -1,0 +1,29 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# e2e
+/packages
+
+Yex/TestResults/*
+YEXDataProvider/bin/**/*
+YEXDataProvider/obj/**/*
+YEXEntities/bin/**/*
+YEXEntities/obj/**/*
+YEXBusinessTest/bin/**/*
+YEXBusinessTest/obj/**/*
+YEXBusiness/bin/**/*
+YEXBusiness/obj/**/*
+Yex/bin/*
+Yex/obj/*
+YEXBusinessTest/FakesAssemblies/*
+
+*.suo
+# System Files
+.DS_Store
+Thumbs.db
