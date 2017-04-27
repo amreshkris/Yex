@@ -1,7 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
 namespace  YEXEntities
-
 {
     public class StockDetail
     {

@@ -22,7 +22,7 @@ namespace YEXDataProvider
         }
 
         void IStockRepository.LoadStock(List<StockDetail> stock)
-        {          
+        {
             using (YEXDBContext context = new YEXDBContext())
             {
                 foreach (var eachStock in stock)
@@ -30,8 +30,8 @@ namespace YEXDataProvider
                     context.stocks.Add(eachStock);
                 }
                 context.SaveChanges();
-             }
-        }                 
+            }
+        }
 
         List<StockDetail> IStockRepository.GetAllStock()
         {
@@ -45,43 +45,33 @@ namespace YEXDataProvider
             }
             catch (Exception ex)
             {
-                              
-            }          
+
+            }
             return sampleData;
         }
 
-        List<OrderDetail> IStockRepository.SaveOrder(OrderDetail orderDetail)
+        void IStockRepository.SaveOrder(OrderDetail orderDetail)
         {
-            var orderHistory = new List<OrderDetail>();
             try
             {
                 using (YEXDBContext context = new YEXDBContext())
                 {
                     context.orderHistory.Add(orderDetail);
                     context.SaveChanges();
-                    orderHistory = context.orderHistory.ToList();
                 }
             }
             catch (Exception ex)
             {
-
+                // handle log
             }
-            return orderHistory;
         }
 
         List<OrderDetail> IStockRepository.GetOrderHistory()
         {
-            var orderHistory = new List<OrderDetail>();
-            try
+            List<OrderDetail> orderHistory;
+            using (YEXDBContext context = new YEXDBContext())
             {
-                using (YEXDBContext context = new YEXDBContext())
-                {
-                    orderHistory = context.orderHistory.ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-
+                orderHistory = context.orderHistory.ToList();
             }
             return orderHistory;
         }

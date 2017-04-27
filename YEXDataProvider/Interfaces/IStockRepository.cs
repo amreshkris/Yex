@@ -8,7 +8,7 @@ namespace YEXDataProvider.Interfaces
         void LoadStock(List<StockDetail> stock);
         StockDetail GetStockDetail(string stockName);        
         List<StockDetail> GetAllStock();
-        List<OrderDetail> SaveOrder(OrderDetail orderDetail);
+        void SaveOrder(OrderDetail orderDetail);
         List<OrderDetail> GetOrderHistory();
     }
 }

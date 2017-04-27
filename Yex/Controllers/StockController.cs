@@ -14,14 +14,24 @@ namespace YEXStockExchange.Controllers
         {
             _stockBusiness = stockBusiness;
         }
-
+        
         // GET: api/Stock/5
+        /// <summary>
+        /// Get stock detail
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public HttpResponseMessage Get(string id)
         {
             var result = _stockBusiness.GetStockDetail("aaa");
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
         
+        /// <summary>
+        /// Load - Initial Method to create n number of stocks
+        /// </summary>
+        /// <param name="numberOfStocks"></param>
+        /// <returns></returns>
         [Route("api/load/{numberOfStocks:int}")]
         public HttpResponseMessage Load([FromUri]int numberOfStocks)
         {
@@ -29,6 +39,10 @@ namespace YEXStockExchange.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, result);
         }
 
+        /// <summary>
+        /// Get- Random stock data
+        /// </summary>
+        /// <returns></returns>
         [Route("api/stock/fluctuate")]
         [HttpGet]
         public HttpResponseMessage FluctuatePrice()

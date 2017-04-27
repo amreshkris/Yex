@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Yex
 {
@@ -9,6 +10,7 @@ namespace Yex
     {
         public static void Register(HttpConfiguration config)
         {
+            
             // Web API configuration and services
 
             // Web API routes
@@ -19,6 +21,7 @@ namespace Yex
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            config.EnableCors(new EnableCorsAttribute("*", "*", "*"));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using YEXBusiness;
 using YEXDataProvider.Interfaces;
 using YEXDataProvider.Interfaces.Fakes;
@@ -19,7 +20,6 @@ namespace YEXBusinessTest
             };
             var result = new StockBusiness(stockRepository).FluctuatePrice();
             Assert.IsInstanceOfType(result,typeof(List<StockDetail>));
-            Assert.IsNull(result);
         }
 
         [TestMethod]
@@ -61,6 +61,22 @@ namespace YEXBusinessTest
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetStockDetail_NoData()
+        {
+            IStockRepository stockRepository = new StubIStockRepository()
+            {
+                GetStockDetailString = (stockname) => new StockDetail()
+                {
+                    StockName =  "test",
+                    StockPrice = 1,
+                    PreviousStockPrice = 2.0M
+                }
+            };
+            new StockBusiness(stockRepository).GetStockDetail("");
+        }
+
+        [TestMethod]
         public void LoadStock_NoData()
         {
             IStockRepository stockRepository = new StubIStockRepository()
@@ -88,5 +104,15 @@ namespace YEXBusinessTest
             Assert.IsTrue(result.Count == 1);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void SaveOrder_InvalidInput()
+        {
+            IStockRepository stockRepository = new StubIStockRepository()
+            {
+                SaveOrderOrderDetail = (orderdetail) => { }
+            };
+            var result = new StockBusiness(stockRepository).SaveOrder(null);
+        }
     }
 }

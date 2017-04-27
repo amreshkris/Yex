@@ -13,7 +13,6 @@ namespace YEXStockExchange.Unity
         /// Configure Api
         /// </summary>
         /// <param name="config">Config</param>
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Reliability", "CA2000:Dispose objects before losing scope"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         public static void ConfigureApi(HttpConfiguration config)
         {
             var unity = new UnityContainer();
